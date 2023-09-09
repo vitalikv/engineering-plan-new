@@ -325,17 +325,17 @@
 						<div class="flex_1 texture_wall" nameId="rp_block_wall_texture_1">
 							<div class="button1 button_gradient_1 texture_wall_2" nameId="rp_button_wall_texture_1">
 								<div class="texture_wall_2_text">A</div>							
-								<img src="<?=$path?>img/load/kirpich.jpg" nameId="wall_texture_1img">	
+								<img src="" nameId="wall_texture_1img">	
 							</div>
 							<div class="button1 button_gradient_1 texture_wall_2" nameId="rp_button_wall_texture_2">
 								<div class="texture_wall_2_text">B</div>
-								<img src="<?=$path?>img/load/kirpich.jpg" nameId="wall_texture_2img">	
+								<img src="" nameId="wall_texture_2img">	
 							</div>							
 						</div>
 					</div>
 
 					<div style="display: none;" nameId="rp_catalog_texture_1">
-						<div class="button1 button_gradient_1" style="margin-top: 20px;" nameId="but_back_catalog_texture_1" style="display: none;">Закрыть</div>
+						<div class="button1 button_gradient_1" style="margin-top: 20px; padding: 5px; font-size: 14px;" nameId="but_back_catalog_texture_1" style="display: none;">Закрыть</div>
 						<div class="rp_1_1_list">
 							<div class="rp_1_2_list" list_ui="catalog_texture_1">
 								
@@ -408,19 +408,19 @@
 					</div>					
 					
 					<div class="flex_1" style="margin: 15px auto;">						
-						<div class="button1 button_gradient_1" nameId="sw_dw_1" style="height: 55px;">
-							<svg width="55" height="55" xmlns="http://www.w3.org/2000/svg">
+						<div class="button1 button_gradient_1" nameId="sw_dw_1" style="width: 30px; height: 30px; margin: 5px; padding: 5px;">
+							<svg width="100%" height="100%" viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
 							 <g>
-							  <path id="svg_25" d="m8.636221,26.014259l18.863752,-24.89781l18.863754,24.89781z" opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="#595959"/>
-							  <path transform="rotate(-180, 27.4995, 41.2721)" id="svg_23" d="m8.635712,53.719929l18.863752,-24.89781l18.863752,24.89781z" opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="#595959"/>
+							  <path id="svg_25" d="m8.636221,26.014259l18.863752,-24.89781l18.863754,24.89781z" opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="0.5" stroke="#000" fill="#595959"/>
+							  <path transform="rotate(-180, 27.4995, 41.2721)" id="svg_23" d="m8.635712,53.719929l18.863752,-24.89781l18.863752,24.89781z" opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="0.5" stroke="#000" fill="#595959"/>
 							 </g>
 							</svg>	
 						</div>	
-						<div class="button1 button_gradient_1" nameId="sw_dw_2" style="height: 55px;">
-							<svg width="55" height="55" xmlns="http://www.w3.org/2000/svg">
+						<div class="button1 button_gradient_1" nameId="sw_dw_2" style="width: 30px; height: 30px; margin: 5px; padding: 5px;">
+							<svg width="100%" height="100%" viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
 							 <g>
-							  <path transform="rotate(90, 41.4493, 27.5012)" id="svg_25" d="m22.585522,39.94907l18.86375,-24.89781l18.863754,24.89781z" opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="#595959"/>
-							  <path transform="rotate(-90, 13.6147, 27.4983)" id="svg_23" d="m-5.249556,39.948669l18.863752,-24.897808l18.863754,24.897808z" opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="#595959"/>
+							  <path transform="rotate(90, 41.4493, 27.5012)" id="svg_25" d="m22.585522,39.94907l18.86375,-24.89781l18.863754,24.89781z" opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="0.5" stroke="#000" fill="#595959"/>
+							  <path transform="rotate(-90, 13.6147, 27.4983)" id="svg_23" d="m-5.249556,39.948669l18.863752,-24.897808l18.863754,24.897808z" opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="0.5" stroke="#000" fill="#595959"/>
 							 </g>
 							</svg>	
 						</div>							
@@ -465,19 +465,15 @@
 							</div>
 						</div>						
 					</div>						
+								
 					
-				
-					<div class="button1 button_gradient_1" nameId="obj_rotate_reset" style="display: none;">
-						reset	
-					</div>
-					
-					<div class="button1 button_gradient_1" nameId="button_copy_obj">
-						копировать	
+					<div class="button1 button_gradient_1" nameId="button_copy_obj" style="font-size: 14px; font-weight: normal; width: 140px; height: auto; padding: 5px; margin: 10px auto;">
+						копировать объект	
 					</div>																
 					
 
 					<div>
-						<div class="rp_1_1_list">
+						<div class="rp_1_1_list" style="max-height: 550px;">
 							<div class="rp_1_2_list" nameId="catalog_texture_obj">
 
 							</div>				 							
@@ -526,6 +522,10 @@
 						</div>						
 					</div>	
 
+					<div class="button1 button_gradient_1" nameId="btn_copy_roof" style="font-size: 14px; font-weight: normal; width: 140px; height: auto; padding: 5px; margin: 10px auto;">
+						копировать крышу	
+					</div>
+					
 					<div>
 						<div class="rp_1_1_list">
 							<div class="rp_1_2_list" nameId="color_roof_1">

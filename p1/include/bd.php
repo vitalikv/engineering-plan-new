@@ -6,14 +6,20 @@ require_once ("bd_1.php");
 
 $url = $_SERVER['REQUEST_URI'];
 
-$path = "";
+$path = "/p1/";
 if($_SERVER['SERVER_NAME']=='engineering-plan.ru' || $_SERVER['SERVER_NAME']=='engineering-plan-new') $path = '/p1/';
 
 $title = 'Планировщик загородного дома онлайн 3D';
-$h1 = '----';
+$h1 = '';
 $description = '';
 $nameId = '';
 
+if($url == '/construction')	
+{ 
+	$title = 'Проектирование загородного дома онлайн 3D';
+	$h1 = 'Конструктор дома';
+	$description = 'Планировщик домов и коттеджей в 3D. В этой онлайн программе вы сможете спроектировать свою квартиру, дом или здание.';	
+}
 
 
 $infProject = array('url' => $url, 'title' => $title, 'nameId' => $nameId, 'path' => $path, 'load' => [ img => [] ]);
