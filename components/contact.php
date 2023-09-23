@@ -4,15 +4,21 @@ $name = $_POST['name'];
 $mail = $_POST['mail'];  
 $text = $_POST['text'];
 
+$error = '';
 
-$name = work_text($name);
-$name = preg_replace('|<.+>|isU','',$name);
+//$name = work_text($name);
+//$name = preg_replace('|<.+>|isU','',$name);
+//$name = preg_replace("/[^\w]+/", "", $name);
+$name = htmlentities($name);	
 
-$mail = work_text($mail);
-$mail = preg_replace('|<.+>|isU','',$mail);
+//$mail = work_text($mail);
+//$mail = preg_replace('|<.+>|isU','',$mail);
+if(!filter_var($mail, FILTER_VALIDATE_EMAIL)) 
+{
+	$error = 'Некорректно указана почта';
+}
 
-if (!preg_match("|[а-я]+|i", $text)) { $text = '';}
-$text = work_text($text);
+$text = htmlentities($text); // экранируем спецсимволы
 
 function work_text($text){
 $text = trim($text);
@@ -31,16 +37,27 @@ return $text;
 }
 
 
+if($error === '')
+{
+	$mail_form = "Content-type:text/html; Charset=utf-8\r\nFrom:mail@engineering-plan.ru";
+	$email = 'engineering-plan@mail.ru';
+	$tema = "Сообщение с сайта ИНЖЕНЕРНЫЙ ПЛАН";
+	$mess = $name.'<br>'.$mail.'<br><br>'.$text;
+	mail($email, $tema, $mess, $mail_form);
 
-$mail_form = "Content-type:text/html; Charset=utf-8\r\nFrom:mail@engineering-plan.ru";
-$email = 'engineering-plan@mail.ru';
-$tema = "Сообщение с сайта ИНЖЕНЕРНЫЙ ПЛАН";
-$mess = $name.'<br>'.$mail.'<br><br>'.$text;
-mail($email, $tema, $mess, $mail_form);
+	echo 'Спасибо! Мы приняли ваше сообщение.';	
+}
 
+if($error !== '')
+{
+	$mail_form = "Content-type:text/html; Charset=utf-8\r\nFrom:mail@engineering-plan.ru";
+	$email = 'engineering-plan@mail.ru';
+	$tema = "Сообщение с сайта ИНЖЕНЕРНЫЙ ПЛАН (error)";
+	$mess = $name.'<br>'.$mail.'<br><br>'.$text;
+	mail($email, $tema, $mess, $mail_form);
 
-echo 'Спасибо! Мы приняли ваше сообщение.';
-
+	echo $error;	
+}
 
 
 ?>
