@@ -14,6 +14,10 @@
 
 
 </head>
+
+<? require_once("include/metrikaYa.php"); ?>
+
+
 <body>
 
 
