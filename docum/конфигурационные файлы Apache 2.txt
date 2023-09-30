@@ -1,0 +1,135 @@
+server {
+	server_name engineering-plan.ru www.engineering-plan.ru;
+	charset off;
+	index index.php index.html;
+	disable_symlinks if_not_owner from=$root_path;
+	include /etc/nginx/vhosts-includes/*.conf;
+	include /etc/nginx/vhosts-resources/engineering-plan.ru/*.conf;
+	access_log /var/www/httpd-logs/engineering-plan.ru.access.log;
+	error_log /var/www/httpd-logs/engineering-plan.ru.error.log notice;
+	ssi on;
+	return 301 https://$host:443$request_uri;
+	set $root_path /var/www/www-root/data/www/engineering-plan.ru;
+	root $root_path;
+	listen 185.246.67.177:80;
+	gzip on;
+	gzip_comp_level 5;
+	gzip_disable "msie6";
+	gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript application/javascript image/svg+xml;
+	location / {
+		location ~ [^/]\.ph(p\d*|tml)$ {
+			try_files /does_not_exists @fallback;
+		}
+		location ~* ^.+\.(jpg|jpeg|gif|png|svg|js|css|mp3|ogg|mpe?g|avi|zip|gz|bz2?|rar|swf|webp|woff|woff2)$ {
+			expires 24h;
+			try_files $uri $uri/ @fallback;
+		}
+		location / {
+			try_files /does_not_exists @fallback;
+		}
+	}
+	location @fallback {
+		proxy_pass http://127.0.0.1:8080;
+		proxy_redirect http://127.0.0.1:8080 /;
+		proxy_set_header Host $host;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
+		proxy_set_header X-Forwarded-Port $server_port;
+		access_log off;
+	}
+}
+server {
+	server_name engineering-plan.ru www.engineering-plan.ru;
+	ssl_certificate "/var/www/httpd-cert/www-root/engineering-plan.ru_le1.crtca";
+	ssl_certificate_key "/var/www/httpd-cert/www-root/engineering-plan.ru_le1.key";
+	ssl_ciphers EECDH:+AES256:-3DES:RSA+AES:!NULL:!RC4;
+	ssl_prefer_server_ciphers on;
+	ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;
+	ssl_dhparam /etc/ssl/certs/dhparam4096.pem;
+	charset off;
+	index index.php index.html;
+	disable_symlinks if_not_owner from=$root_path;
+	include /etc/nginx/vhosts-includes/*.conf;
+	include /etc/nginx/vhosts-resources/engineering-plan.ru/*.conf;
+	access_log /var/www/httpd-logs/engineering-plan.ru.access.log;
+	error_log /var/www/httpd-logs/engineering-plan.ru.error.log notice;
+	
+   if ($host ~* ^www\.(.*)$) {
+      return 301 https://$server_name$request_uri;
+   } 	
+	
+	ssi on;
+	set $root_path /var/www/www-root/data/www/engineering-plan.ru;
+	root $root_path;
+	listen 185.246.67.177:443 ssl;
+	gzip on;
+	gzip_comp_level 5;
+	gzip_disable "msie6";
+	gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript application/javascript image/svg+xml;
+	
+	
+	location / {
+
+ 
+  
+location /index {
+  rewrite ^/index\.php$ / redirect;
+}
+
+location = /review {
+  rewrite ^(.*)$ /review.php;
+}
+
+location = /documentation {
+  rewrite ^(.*)$ /documentation.php;
+}
+
+location = /buy {
+  rewrite ^(.*)$ /buy.php;
+}
+
+location = /contact {
+  rewrite ^(.*)$ /contact.php;
+}
+
+location = /get_pay {
+  rewrite ^(.*)$ /components/get_pay.php;
+}
+
+location = /download {
+  rewrite ^(.*)$ /download.php;
+}
+
+location = /dw/program.zip {
+  rewrite ^(.*)$ /dw/download_1.php;
+}
+
+location = /plan {
+  rewrite ^(.*)$ /three/index.php;
+}
+
+location = /construction {
+  rewrite ^(.*)$ /p1/index.php;
+}	
+	
+		location ~ [^/]\.ph(p\d*|tml)$ {
+			try_files /does_not_exists @fallback;
+		}
+		location ~* ^.+\.(jpg|jpeg|gif|png|svg|js|css|mp3|ogg|mpe?g|avi|zip|gz|bz2?|rar|swf|webp|woff|woff2)$ {
+			expires 24h;
+			try_files $uri $uri/ @fallback;
+		}
+		location / {
+			try_files /does_not_exists @fallback;
+		}
+	}
+	location @fallback {
+		proxy_pass http://127.0.0.1:8080;
+		proxy_redirect http://127.0.0.1:8080 /;
+		proxy_set_header Host $host;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
+		proxy_set_header X-Forwarded-Port $server_port;
+		access_log off;
+	}
+}

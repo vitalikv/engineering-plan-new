@@ -1,0 +1,54 @@
+<VirtualHost 127.0.0.1:8080>
+	ServerName engineering-plan.ru
+	ServerAlias www.engineering-plan.ru
+	DocumentRoot /var/www/www-root/data/www/engineering-plan.ru
+	ServerAdmin webmaster@engineering-plan.ru
+	DirectoryIndex index.php index.html
+	AddDefaultCharset off
+	AssignUserID www-root www-root
+	CustomLog /var/www/httpd-logs/engineering-plan.ru.access.log combined
+	ErrorLog /var/www/httpd-logs/engineering-plan.ru.error.log
+	<FilesMatch "\.ph(p[3-5]?|tml)$">
+		SetHandler application/x-httpd-php
+	</FilesMatch>
+	<FilesMatch "\.phps$">
+		SetHandler application/x-httpd-php-source
+	</FilesMatch>
+	<IfModule php5_module>
+		Include /etc/apache2/users-php/www-root.conf
+		Include /etc/apache2/vhosts-php/engineering-plan.ru.conf
+		php_admin_value sendmail_path "/usr/sbin/sendmail -t -i -f webmaster@engineering-plan.ru"
+		php_admin_value upload_tmp_dir "/var/www/www-root/data/mod-tmp"
+		php_admin_value session.save_path "/var/www/www-root/data/mod-tmp"
+		php_admin_value open_basedir "/var/www/www-root/data:."
+	</IfModule>
+	<IfModule php7_module>
+		Include /etc/apache2/users-php/www-root.conf
+		Include /etc/apache2/vhosts-php/engineering-plan.ru.conf
+		php_admin_value sendmail_path "/usr/sbin/sendmail -t -i -f webmaster@engineering-plan.ru"
+		php_admin_value upload_tmp_dir "/var/www/www-root/data/mod-tmp"
+		php_admin_value session.save_path "/var/www/www-root/data/mod-tmp"
+		php_admin_value open_basedir "/var/www/www-root/data:."
+	</IfModule>
+	<IfModule php_module>
+		Include /etc/apache2/users-php/www-root.conf
+		Include /etc/apache2/vhosts-php/engineering-plan.ru.conf
+		php_admin_value sendmail_path "/usr/sbin/sendmail -t -i -f webmaster@engineering-plan.ru"
+		php_admin_value upload_tmp_dir "/var/www/www-root/data/mod-tmp"
+		php_admin_value session.save_path "/var/www/www-root/data/mod-tmp"
+		php_admin_value open_basedir "/var/www/www-root/data:."
+	</IfModule>
+	SetEnvIf X-Forwarded-Proto https HTTPS=on
+</VirtualHost>
+<Directory /var/www/www-root/data/www/engineering-plan.ru>
+	Options +Includes -ExecCGI
+	<IfModule php5_module>
+		php_admin_flag engine on
+	</IfModule>
+	<IfModule php7_module>
+		php_admin_flag engine on
+	</IfModule>
+	<IfModule php_module>
+		php_admin_flag engine on
+	</IfModule>
+</Directory>
