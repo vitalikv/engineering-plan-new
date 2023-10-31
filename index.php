@@ -92,7 +92,7 @@ $(document).on('click', '[fon]', function () { $('[fon]').css({"display":"none"}
 		
 		<div class="block_line_1">		
 			<div class="offset_top_50"></div>
-			<div class="t1">Строительные программы 3D онлайн</div>
+			<div class="t1">Строительная программа 3D онлайн</div>
 			<div class="offset_top_30"></div>
 			
 			<div>

@@ -8,7 +8,8 @@
 
 <link rel="stylesheet" media="screen" type="text/css" title="Style" href="/css/reset.css">
 <link rel="stylesheet" media="screen" type="text/css" title="Style" href="/css/style.css?1">
-<script src="/js/jquery-3.1.0.min.js"></script>
+<style>body { overflow: auto }</style>
+
 
 <title>Инструкция</title>
 
@@ -22,48 +23,57 @@
 
 
 
+
 <script>
-$(document).ready(function(){			
+document.addEventListener("DOMContentLoaded", ()=>
+{
+	const elems = document.querySelectorAll('[lesson]');
+	const wrapV = document.querySelector('[nameId="wrapV"]');	
 
+	elems.forEach((el)=> 
+	{
+		const id = el.getAttribute('lesson');		
+		el.addEventListener('mousedown', (e) => { showLesson(id); });
+	});
+	
+	wrapV.onmousedown = () => { hideLesson(); }
+	
+	function showLesson(id)
+	{
+		let video = '';
 
-<? // уроки ?>
-$(document).on('click', '[lesson]', function () { 
-var lesson = $(this).attr('lesson');
-var video = "";
-
-if(lesson == "1"){ video = "https://www.youtube.com/embed/jnWplwqkZvo"; }
-else if(lesson == "2"){ video = "https://www.youtube.com/embed/UPJEkjkEyNI"; }
-else if(lesson == "3"){ video = "https://www.youtube.com/embed/cNSOSoMZCXc"; }
-else if(lesson == "4"){ video = "https://www.youtube.com/embed/Gipncbw37Hc"; }
-else if(lesson == "5"){ video = "https://www.youtube.com/embed/CmyHbr3Fpao"; }
-else if(lesson == "6"){ video = "https://www.youtube.com/embed/D_Q7W1TlwoU"; }
-else { video = "https://www.youtube.com/embed/1J49QSxEhT0"; }
-
-$('[fon]').html('<div class="img_big_2"><iframe width="100%" height="100%" src="'+ video + '" frameborder="0" allowfullscreen></iframe></div>');
-
-$('[fon]').css({"display":"block"});
-
-var w_okno = $(window).width() * 0.7;
-
-$('.img_big_2').css("width", w_okno);
-$('.img_big_2').css("height", w_okno / 1.6666);
-$('.img_big_2').css("margin-top", ($(window).height() - w_okno / 1.6666) / 2);
-
-});		
-<? // уроки ?>
-
-
-<? // закрытие fon ?>
-$(document).on('click', '.img_big_2', function () { return false; });
-$(document).on('click', '[fon]', function () { $('[fon]').css({"display":"none"}); $('[fon]').html(''); $('body').css("overflow", "auto"); });
-<? // закрытие fon ?>	
+		if(id === '1'){ video = "https://www.youtube.com/embed/2xOI2zSGQBw"; }
+		else if(id === '2'){ video = "https://www.youtube.com/embed/2xOI2zSGQBw?si=9mYlE7WvcgQsUxMv"; }
+		else if(id === '3'){ video = "https://www.youtube.com/embed/fbZoJ5EUR_s?si=IGSzQ2Qa7qcY8_84"; }
+		else if(id === '4'){ video = "https://www.youtube.com/embed/r9PRo5NiyTY?si=O9IglJo1h1Qn40Us"; }
+		else if(id === '5'){ video = "https://www.youtube.com/embed/R-Z8Ts0QewQ?si=G3LQNKALKck8DTSI"; }
 		
+		if(video === '') return;
 		
+		wrapV.innerHTML = '<div class="img_big_2" nameId="wrapC"><iframe width="100%" height="100%" src="'+ video + '" frameborder="0" allowfullscreen></iframe></div>';
+		
+		wrapV.style.display = 'block';
+
+		const ratio = window.innerWidth * 0.7;
+		
+		const wrapC = wrapV.querySelector('[nameId="wrapC"]');
+		wrapC.style.width = ratio + 'px';
+		wrapC.style.height = ratio / 1.6666 + 'px';
+		wrapC.style.marginTop = (window.innerHeight - ratio / 1.6666) / 2 + 'px';
+
+		wrapC.onmousedown = () => { e.stopPropagation(); }
+	}
+	
+	function hideLesson()
+	{
+		wrapV.style.display = 'none';
+		wrapV.innerHTML = '';
+	}
 });
 </script>
 
 
-<div class="fon" fon=""></div>
+<div class="fon" nameId="wrapV"></div>
 
 
 
@@ -76,22 +86,20 @@ $(document).on('click', '[fon]', function () { $('[fon]').css({"display":"none"}
 		
 		<div class="block_line_1">
 			<div class="offset_top_50"></div>
-			<div class="t1">Инструкция по работе с программой</div>
+			<div class="t1">Инструкция</div>
 			<div class="offset_top_30"></div>
 			
 			<div class="docum">
-				<div class="docum_a" lesson="1">1. Рабочее пространство</div><br>
-				<div class="docum_a" lesson="2">2. Установка планировки</div><br>
-				<div class="docum_a" lesson="3">3. Каталог</div><br>
-				<div class="docum_a" lesson="4">4. Работа с деталями</div><br>
-				<div class="docum_a" lesson="5">5. Сборка системы отопления</div><br>
-				<div class="docum_a" lesson="6">6. Работа с готовой схемой</div><br>
+				<div class="docum_a" lesson="2">1. Построение стен</div><br>
+				<div class="docum_a" lesson="3">2. Окна двери</div><br>
+				<div class="docum_a" lesson="4">3. Добавление этажей</div><br>
+				<div class="docum_a" lesson="5">4. Крыша</div><br>
 			</div>
 			
 			<div class="docum_line"></div>
-			<div class="docum_teh">
-			<b>Техническая поддержка:</b> <br>  
-			Если есть вопросы по работе с программой, пишите на почту <b>engineering-plan@mail.ru</b>
+			<div class="docum_teh" style="display: none;">
+				<b>Техническая поддержка:</b> <br>  
+				Если есть вопросы по работе с программой, пишите на почту <b>engineering-plan@mail.ru</b>
 			</div>
 		</div>
 		<div class="offset_top_30"></div>
