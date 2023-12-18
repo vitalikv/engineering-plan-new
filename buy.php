@@ -9,7 +9,7 @@
 <link rel="stylesheet" media="screen" type="text/css" title="Style" href="/css/reset.css">
 <link rel="stylesheet" media="screen" type="text/css" title="Style" href="/css/style.css">
 <link rel="stylesheet" media="screen" type="text/css" title="Style" href="/css/buy.css">
-<script src="/js/jquery.js"></script>
+
 
 
 <title>Оформить подписку</title>
@@ -23,39 +23,61 @@
 
 
 <script>
-$(document).ready(function(){			
-
-
-$('[button_order]').click(function(){  
-
-	<? if(1==1){ ?>
-	$.ajax({
-		type: "POST",					
-		url: '/components/buy_1.php',
-		data: {"name":"name", "mail":"9455469@mail.ru", "pay_method":"pay_method"},
-		success: function(data){  
-
-			console.log(222, data);
-
-			if(data != '-1')
-			{
-				$("input[name='label']").val(data.trim());
-
-				$('[form_post]').submit();
-			}
-
-		}
-	});
-	<?} ?>
-
+document.addEventListener("DOMContentLoaded", ()=>
+{
+	new SendPost();
 });
 
+class SendPost
+{
+	formPost;
+	yooLabel;
 	
-<?// проверка, пустое поле или нет (если пустое == true) ?>		
-function empty(mixed_var) { return ( mixed_var === "" || mixed_var === 0   || mixed_var === "0" || mixed_var === null  || mixed_var === false || mixed_var === "undefined" ); }
-
+	constructor()
+	{
+		this.formPost = document.querySelector('[nameId="formPost"]');
+		this.yooLabel = this.formPost.querySelector('input[name="label"]');
 		
-});
+		this.initEvent();
+	}
+	
+	initEvent()
+	{
+		const btn = document.querySelector('[nameId="btnSendPost"]');		
+		btn.onmousedown = () => { this.sendPost(); }		
+	}
+	
+	async sendPost()
+	{
+		const name = 'name test';
+		const mail = '9455469@mail.ru';
+		const pay_method = 'pay_method';
+		
+		const url = '/components/buy_1.php';					
+		const response = await fetch(url, 
+		{
+			method: 'POST',
+			body: 'name='+name+'&mail='+mail+'&pay_method='+pay_method,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},				
+		});	
+		if(!response.ok) return;
+		const data = await response.text();
+
+		if(data != '-1')
+		{					
+			this.yooLabel.value = data.trim();
+
+			this.formPost.submit();
+		}		
+	}
+	
+	<?// проверка, пустое поле или нет (если пустое == true) ?>		
+	empty(mixed_var) 
+	{ 
+		return ( mixed_var === "" || mixed_var === 0   || mixed_var === "0" || mixed_var === null  || mixed_var === false || mixed_var === "undefined" ); 
+	}	
+}
+
 </script>
 
 
@@ -97,7 +119,7 @@ function empty(mixed_var) { return ( mixed_var === "" || mixed_var === 0   || mi
 					
 					<div class="clear"></div>
 					
-					<div class="button_order" button_order="">На месяц</div>
+					<div nameId="btnSendPost" class="button_order">На месяц</div>
 					<div class="offset_top_30"></div>					
 				</div>	
 				<div class="clear"></div>
@@ -109,7 +131,7 @@ function empty(mixed_var) { return ( mixed_var === "" || mixed_var === 0   || mi
 		<div class="offset_top_50"></div>
 			
 		
-		<form style="display:none;" form_post="" method="POST" action="https://yoomoney.ru/quickpay/confirm" <!--target="_blank" -->>
+		<form style="display:none;" nameId="formPost" method="POST" action="https://yoomoney.ru/quickpay/confirm" <!--target="_blank" -->>
 			<input type="hidden" name="receiver" value="41001994824535">
 			<input type="hidden" name="label" value="">
 			<input type="hidden" name="quickpay-form" value="button">
