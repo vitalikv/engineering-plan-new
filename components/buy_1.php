@@ -1,40 +1,68 @@
 <?php
+header('Content-Type: application/json; charset=utf-8');
+
 require_once ($_SERVER['DOCUMENT_ROOT']."/include/bd.php");
 
 
+// только для теста, ввод значения через url
+// пример buy_1.php?token=23vdgd
+if(1===2)
+{
+	if($_GET['token']) $user_token = addslashes(trim($_GET['token']));
+}
 
-$name = trim($_POST['name']);
-$mail = trim($_POST['mail']);
-$pay = $_POST['pay_method'];  
+// входные данные
+if($_POST['token']) $user_token = addslashes(trim($_POST['token']));  
 $date = date("Y-m-d-G-i");
 
-$pay = $pay == 'buy_yandex' ? 'yandex' : 'card';
+// данные на выход
+$data = [];
+$data['result'] = false;
+$data['id'] = -1;
+
+// проверка, на входные данные
+if(!empty($user_token))
+{
+	$exists = checkExistsUser($db, $user_token);
+	
+	if($exists)
+	{
+		$sql = "INSERT INTO payment (user_token, date) VALUES (:user_token, :date)";
+		$r = $db->prepare($sql);
+		$r->bindValue(':user_token', $user_token);
+		$r->bindValue(':date', $date);
+		$r->execute();
+
+		$count = $r->rowCount();
+
+		if($count === 1)
+		{ 
+			$data['result'] = true;
+			$data['id'] = $db->lastInsertId();
+			$data['token'] = $user_token;
+		}		
+	}
+}
 
 
-$id_oder = '-1';
+// проверить существует ли юзер
+function checkExistsUser($db, $user_token)
+{
+	$exists = false;
+	
+	$sql = "SELECT * FROM user WHERE token = :token LIMIT 1";
+	$r = $db->prepare($sql);
+	$r->bindValue(':token', $user_token);
+	$r->execute();
+	$res = $r->fetch(PDO::FETCH_ASSOC);
 
-if (empty($mail)){ echo $id_oder; exit;}
+	if($res) $exists = true;
+	
+	return $exists;
+}
 
-
-$sql = "INSERT INTO application (name, mail, pay, date) VALUES ( :name, :mail, :pay, :date)";
-
-$r = $db->prepare($sql);
-$r->bindValue(':name', $name);
-$r->bindValue(':mail', $mail);
-$r->bindValue(':pay', $pay);
-$r->bindValue(':date', $date);
-$r->execute();
-
-
-$count = $r->rowCount();
-
-if($count==1){ echo $db->lastInsertId(); }
-else{ echo $id_oder; }
-
-
-
-?>
-
+// отдаем результат в json
+echo json_encode( $data );
 
 
 

@@ -49,23 +49,21 @@ class SendPost
 	
 	async sendPost()
 	{
-		const name = 'name test';
-		const mail = '9455469@mail.ru';
-		const pay_method = 'pay_method';
+		const token = 'db7722b86649cb0f4e23ed8112b3d092';
 		
 		const url = '/components/buy_1.php';					
 		const response = await fetch(url, 
 		{
 			method: 'POST',
-			body: 'name='+name+'&mail='+mail+'&pay_method='+pay_method,
+			body: 'token='+token,
 			headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},				
 		});	
 		if(!response.ok) return;
-		const data = await response.text();
+		const data = await response.json();
 
-		if(data != '-1')
+		if(data.result === true)
 		{					
-			this.yooLabel.value = data.trim();
+			this.yooLabel.value = 'project=otop'+'&id='+data.id+'&token='+data.token;
 
 			this.formPost.submit();
 		}		
@@ -97,7 +95,9 @@ class SendPost
 			<div class="bl_buy_1">
 				<div class="bl_buy_1_1">
 					Чтобы оформить подписку, вам необходимо воспользоваться формой заказа.<br><br>  
-					После оплаты, на указанную вами электронную почту придет письмо со ссылкой на программу.<br><br>  
+					После оплаты, на указанную вами электронную почту придет письмо со ссылкой на программу.<br><br> 
+
+					<b>карта не привязывается</b><br><br>
 					
 					<b> Техническая поддержка:</b> <br>  
 					Если есть вопросы после покупки программы, пишите на почту <b>engineering-plan@mail.ru</b>
