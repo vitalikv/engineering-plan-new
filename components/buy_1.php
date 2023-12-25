@@ -1,7 +1,10 @@
 <?php
+// скрипт создает новое поле с нулевой оплатой
+
 header('Content-Type: application/json; charset=utf-8');
 
 require_once ($_SERVER['DOCUMENT_ROOT']."/include/bd.php");
+
 
 
 // только для теста, ввод значения через url
