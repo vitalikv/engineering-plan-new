@@ -1,4 +1,5 @@
 <?php
+// платеж с мани пришел
 // скрипт обновляет оплату (в таблице payment) и создает/обновляет поле с днями (в таблице subscription) и отправляет сообщение об оплате
 
 header('Content-Type: application/json; charset=utf-8');
