@@ -154,7 +154,13 @@ $(document).on('click', '[fon]', function () { $('[fon]').css({"display":"none"}
 						<div class="ind_text_3">
 							трехэтажный дом
 						</div>				
-					</a>								
+					</a>
+					<a class="ind_bl_1" href="construction?demo=5">
+						<div class="block_form_1_image_wrap"><img src="/img/demo_5.jpg"></div>
+						<div class="ind_text_3">
+							квартира
+						</div>				
+					</a>					
 				</div>
 				<div class="offset_top_50"></div>
 			</div>

@@ -1,5 +1,5 @@
 <? require_once("include/bd.php");  ?>
-<?php $vrs = '=41' ?>
+<?php $vrs = '=43' ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,19 +50,24 @@
 	<script src="<?=$path?>js/export/GLTFExporter.js?<?=$vrs?>"></script>
 	
 	
-	<div id="canvasFrame" style="position: fixed; width: 100%; height: 100%; top: 0; right: 0; overflow: hidden;">
+	<div id="canvasFrame" style="position: fixed; width: 100%; height: 100%; top: 0; right: 0; overflow: hidden; font-family: arial,sans-serif;">
 		<div class="frame block_select_text">
 				
 			<div class="flex_1 height100">
 				
-				<div style="flex-grow:1; position: relative;">
-					<? require_once("include/top_1.php"); ?>
+				<div style="flex-grow:1; position: relative;" nameId="wrapP1">
+					<div style="position: absolute; width: 100%; bottom: 110px; z-index: 2;" nameId="menu_loader_slider_UI">			
+						<div style="width: 260px; height: 60px; margin: auto; padding-bottom: 30px; background: #ffffff; border-radius: 8px; box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.5);">	
+							<div style="padding: 15px 0 0 0; font-size: 18px; text-align: center; color: #666;">Загрузка объектов</div>		
+							<div style="padding: 15px 0; font-size: 16px; text-align: center; color: #666;" nameId="txt_loader_slider_UI">0%</div>		
+						</div>	
+					</div>
 
 					<div style="position: absolute; bottom: 0; right: 20px; width: 170px; height: 80px; z-index: 2;">
 						<a href="/documentation" style="font-size: 16px; cursor: pointer; font-weight: normal;" class="button1 button_gradient_1" data-action ='top_panel_1' target="_blank">
 							<div>видеоинструкция</div>
 						</a>	
-					</div>						
+					</div>					
 				</div>
 				
 				<? require_once("include/right_panel_1.php"); ?>

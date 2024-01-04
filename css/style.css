@@ -50,8 +50,20 @@ body:before { content: ""; position: fixed; top: -10px; left: 0;  width: 100%; h
 
 
 
+.modal_body_content_grid
+{	
+	display: -ms-grid;
+	display: grid;
+	grid-gap: 1rem;
+	-ms-grid-columns: (1fr)[4];
+	grid-template-columns: repeat(5,1fr);
+	grid-auto-rows: 250px;
+	border-radius: 8px;	
+	margin: auto;
+	padding: 0px; 
+}
 
-.modal_body_content_grid, .modal_body_content_grid_2
+.modal_body_content_grid_2
 {	
 	display: -ms-grid;
 	display: grid;
