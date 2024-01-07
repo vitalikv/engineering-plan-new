@@ -1,5 +1,5 @@
 <? require_once("include/bd.php");  ?>
-<?php $vrs = '=43' ?>
+<?php $vrs = '=44' ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,6 +53,7 @@
 	<div id="canvasFrame" style="position: fixed; width: 100%; height: 100%; top: 0; right: 0; overflow: hidden; font-family: arial,sans-serif;">
 		<div class="frame block_select_text">
 				
+			<noindex>
 			<div class="flex_1 height100">
 				
 				<div style="flex-grow:1; position: relative;" nameId="wrapP1">
@@ -68,11 +69,12 @@
 							<div>видеоинструкция</div>
 						</a>	
 					</div>					
-				</div>
+				</div>				
 				
-				<? require_once("include/right_panel_1.php"); ?>
-				
+				<div nameId="wrapP2"></div>
+
 			</div>
+			</noindex>
 		
 		</div>
 
