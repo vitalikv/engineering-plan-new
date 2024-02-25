@@ -4,7 +4,7 @@
 
 header('Content-Type: application/json; charset=utf-8');
 
-require_once ($_SERVER['DOCUMENT_ROOT']."/include/bd.php");
+
 
 
 
@@ -54,6 +54,24 @@ $amount = $xdc['withdraw_amount'];
 parse_str($label, $str);
 $paymentId = $str['id'];
 $user_token = $str['token'];
+$user_project = $str['project'];
+
+
+$dbname = 'engineering-plan';
+if($user_project == 'wf1') $dbname = 'eng_1';
+$upass = '';
+if($_SERVER['SERVER_NAME']=='engineering-plan.ru') $upass = 'ns62QYhqMf';
+
+try
+{
+	$db = new PDO('mysql:host=localhost;dbname='.$dbname, 'root', $upass);
+	$db->exec("set names utf8");
+}
+catch(PDOException $e)
+{
+    echo 'Ошибка 1';
+}
+
 
 
 $data = [];
@@ -81,7 +99,8 @@ if($update)
 			$data['days'] = $sub['days'];
 		}
 		
-		sendMess($user['mail'], $amount);		
+		if($user_project == 'wf1'){ sendMess_2($user['mail'], $data['days']); }
+		else { sendMess_1($user['mail'], $amount); }				
 	}
 }
 
@@ -216,7 +235,7 @@ function addNoteSubscription($db, $user_id, $days)
 
 
 // отправляем сообщение об оплате 
-function sendMess($mail, $amount)
+function sendMess_1($mail, $amount)
 {
 	$mail_form = "Content-type:text/html; Charset=utf-8\r\nFrom:mail@engineering-plan.ru";
 
@@ -235,6 +254,20 @@ function sendMess($mail, $amount)
 	mail($email, $tema, $mess, $mail_form);	
 }
 
+
+// отправляем сообщение об оплате 
+function sendMess_2($mail, $days)
+{
+	$mail_form = "Content-type:text/html; Charset=utf-8\r\nFrom:mail@xn------6cdcklga3agac0adveeerahel6btn3c.xn--p1ai";
+
+	$arrayTo = array($mail.', otoplenie-doma-1@mail.ru');
+	$email = implode(",", $arrayTo);
+
+	$tema = "Программа теплый пол «активирована подписка»";
+	$mess = 'Здравствуйте, вы активировали подписку на '.$days.' дней на сайте отопление-дома-своими-руками.рф (программа теплый пол).';	
+	
+	mail($email, $tema, $mess, $mail_form);	
+}
 
 
 
