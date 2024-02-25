@@ -182,11 +182,17 @@ function setSubscription($db, $user_id, $amount)
 // подсчитываем кол-во оплаченных дней и отдаем результат
 function calcDays($amount)
 {
-	$priceDay = 2;		// цена подписки за день
+	//$priceDay = 2;		// цена подписки за день	
+	//$days = (float)$amount / $priceDay;	
+	//return round($days, 0, PHP_ROUND_HALF_UP);
 	
-	$days = (float)$amount / $priceDay;
+	$days = 0;
 	
-	return round($days, 0, PHP_ROUND_HALF_UP);
+	if($amount === 300) $days = 30;
+	if($amount === 550) $days = 60;
+	if($amount === 750) $days = 90;
+	
+	return $days;
 }
 
 
