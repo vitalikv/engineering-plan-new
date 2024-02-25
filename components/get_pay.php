@@ -188,9 +188,9 @@ function calcDays($amount)
 	
 	$days = 0;
 	
-	if($amount === 300) $days = 30;
-	if($amount === 550) $days = 60;
-	if($amount === 750) $days = 90;
+	if($amount == '300') $days = 30;
+	if($amount == '550') $days = 60;
+	if($amount == '750') $days = 90;
 	
 	return $days;
 }
