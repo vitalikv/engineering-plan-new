@@ -99,8 +99,9 @@ if($update)
 			$data['days'] = $sub['days'];
 		}
 		
-		if($user_project == 'wf1'){ sendMess_2($user['mail'], $data['days']); }
-		else { sendMess_1($user['mail'], $amount); }				
+		// сообщения не проходят, похоже сообщение можно отпровлять только со своего домена
+		//if($user_project == 'wf1'){ sendMess_2($user['mail'], $data['days']); }
+		//else { sendMess_1($user['mail'], $amount); }				
 	}
 }
 
