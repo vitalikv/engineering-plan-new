@@ -1,5 +1,5 @@
 <? require_once("include/bd.php");  ?>
-<?php $vrs = '=49' ?>
+<?php $vrs = '=51' ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,27 +27,27 @@
 	
 			
 	
-    <script src="<?=$path?>js/three.min.js?<?=$vrs?>"></script>
+    <script src="<?=$path?>js/three.min.js"></script>
     <script src="<?=$path?>js/jquery.js"></script>
     <script src="<?=$path?>js/ThreeCSG.js"></script>         
 	
-	<script src="<?=$path?>js/dp/EffectComposer.js?<?=$vrs?>"></script>
-	<script src="<?=$path?>js/dp/CopyShader.js?<?=$vrs?>"></script>
-	<script src="<?=$path?>js/dp/RenderPass.js?<?=$vrs?>"></script>
-	<script src="<?=$path?>js/dp/ShaderPass.js?<?=$vrs?>"></script>
-	<script src="<?=$path?>js/dp/OutlinePass.js?<?=$vrs?>"></script>
-	<script src="<?=$path?>js/dp/FXAAShader.js?<?=$vrs?>"></script>
-	<script src="<?=$path?>js/dp/SAOPass.js?<?=$vrs?>"></script>
-	<script src="<?=$path?>js/dp/SAOShader.js?<?=$vrs?>"></script>
-	<script src="<?=$path?>js/dp/DepthLimitedBlurShader.js?<?=$vrs?>"></script>
-	<script src="<?=$path?>js/dp/UnpackDepthRGBAShader.js?<?=$vrs?>"></script>	
+	<script src="<?=$path?>js/dp/EffectComposer.js"></script>
+	<script src="<?=$path?>js/dp/CopyShader.js"></script>
+	<script src="<?=$path?>js/dp/RenderPass.js"></script>
+	<script src="<?=$path?>js/dp/ShaderPass.js"></script>
+	<script src="<?=$path?>js/dp/OutlinePass.js"></script>
+	<script src="<?=$path?>js/dp/FXAAShader.js"></script>
+	<script src="<?=$path?>js/dp/SAOPass.js"></script>
+	<script src="<?=$path?>js/dp/SAOShader.js"></script>
+	<script src="<?=$path?>js/dp/DepthLimitedBlurShader.js"></script>
+	<script src="<?=$path?>js/dp/UnpackDepthRGBAShader.js"></script>	
 	
-	<script src="<?=$path?>js/loader/inflate.min.js?<?=$vrs?>"></script>
-	<script src="<?=$path?>js/loader/FBXLoader.js?<?=$vrs?>"></script>
-	<script src="<?=$path?>js/loader/STLExporter.js?<?=$vrs?>"></script>
-	<script src="<?=$path?>js/loader/GLTFLoader.js?<?=$vrs?>"></script>	
-	<script src="<?=$path?>js/BufferGeometryUtils.js?<?=$vrs?>"></script>
-	<script src="<?=$path?>js/export/GLTFExporter.js?<?=$vrs?>"></script>
+	<script src="<?=$path?>js/loader/inflate.min.js"></script>
+	<script src="<?=$path?>js/loader/FBXLoader.js"></script>
+	<script src="<?=$path?>js/loader/STLExporter.js"></script>
+	<script src="<?=$path?>js/loader/GLTFLoader.js"></script>	
+	<script src="<?=$path?>js/BufferGeometryUtils.js"></script>
+	<script src="<?=$path?>js/export/GLTFExporter.js"></script>
 	
 	
 	<div id="canvasFrame" style="position: fixed; width: 100%; height: 100%; top: 0; right: 0; overflow: hidden; font-family: arial,sans-serif;">
