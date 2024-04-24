@@ -12,6 +12,11 @@
 	<title><?=$title?></title>
 	<meta name="description" content="<?=$description?>" />
 	<link rel="stylesheet" href="<?=$path?>css/style.css?<?=$vrs?>"> 
+	
+	<!-- Yandex.RTB -->
+	<script>window.yaContextCb=window.yaContextCb||[]</script>
+	<script src="https://yandex.ru/ads/system/context.js" async></script>
+	
 </head>
 
 <? require_once("../include/metrikaYa.php"); ?>
@@ -64,8 +69,13 @@
 						</div>	
 					</div>
 
-					<div style="position: absolute; bottom: 0; right: 20px; width: 170px; height: 80px; z-index: 2;">
-						<a href="/documentation" style="font-size: 16px; cursor: pointer; font-weight: normal;" class="button1 button_gradient_1" data-action ='top_panel_1' target="_blank">
+					<div style="position: absolute; bottom: 0; left: 50%; max-width: 1000px; max-height: 120px; transform: translateX(-50%) translateY(-50%); z-index: 2;">
+						<!-- Yandex.RTB R-A-7810665-1 -->
+						<div id="yandex_rtb_R-A-7810665-1"></div> 
+					</div>
+					
+					<div style="position: absolute; bottom: 0; right: 20px; width: 130px; height: 80px; z-index: 2;">
+						<a href="/documentation" style="font-size: 14px; cursor: pointer; font-weight: normal; padding: 11px 0px;" class="button1 button_gradient_1" data-action ='top_panel_1' target="_blank">
 							<div>видеоинструкция</div>
 						</a>	
 					</div>					
@@ -108,6 +118,15 @@
 	
 
     <script src="<?=$path?>test.js?<?=$vrs?>"></script>    		 
+
+	<script>
+	window.yaContextCb.push(()=>{
+		Ya.Context.AdvManager.render({
+			"blockId": "R-A-7810665-1",
+			"renderTo": "yandex_rtb_R-A-7810665-1"
+		})
+	})
+	</script>
 		
 		
 	<? if($_SERVER['SERVER_NAME']=='ocsg') 
