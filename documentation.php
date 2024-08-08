@@ -42,15 +42,16 @@ document.addEventListener("DOMContentLoaded", ()=>
 	{
 		let video = '';
 
-		if(id === '1'){ video = "https://www.youtube.com/embed/2xOI2zSGQBw"; }
-		else if(id === '2'){ video = "https://www.youtube.com/embed/2xOI2zSGQBw?si=9mYlE7WvcgQsUxMv"; }
-		else if(id === '3'){ video = "https://www.youtube.com/embed/fbZoJ5EUR_s?si=IGSzQ2Qa7qcY8_84"; }
-		else if(id === '4'){ video = "https://www.youtube.com/embed/r9PRo5NiyTY?si=O9IglJo1h1Qn40Us"; }
-		else if(id === '5'){ video = "https://www.youtube.com/embed/R-Z8Ts0QewQ?si=G3LQNKALKck8DTSI"; }
+		if(id === '1'){ video = "https://rutube.ru/play/embed/7ac5775c54e7381f9ac01fb137aad92e"; }
+		else if(id === '2'){ video = "https://rutube.ru/play/embed/1d999522d60e27e277481dc9eaf8fbd8"; }
+		else if(id === '3'){ video = "https://rutube.ru/play/embed/9dc47b58bdddcf0b5d989e35a83ab715"; }
+		else if(id === '4'){ video = "https://rutube.ru/play/embed/ab06bd1e538c225b483d7a23558a7844"; }
+		else if(id === '5'){ video = "https://rutube.ru/play/embed/b60599b5d2bbb65e5f65342fbcd5dbc3"; }
 		
 		if(video === '') return;
 		
-		wrapV.innerHTML = '<div class="img_big_2" nameId="wrapC"><iframe width="100%" height="100%" src="'+ video + '" frameborder="0" allowfullscreen></iframe></div>';
+		wrapV.innerHTML = 
+		'<div class="img_big_2" nameId="wrapC"><iframe width="100%" height="100%" src="'+ video + '" frameBorder="0" allowFullScreen></iframe></div>';
 		
 		wrapV.style.display = 'block';
 
@@ -90,10 +91,11 @@ document.addEventListener("DOMContentLoaded", ()=>
 			<div class="offset_top_30"></div>
 			
 			<div class="docum">
-				<div class="docum_a" lesson="2">1. Построение стен</div><br>
-				<div class="docum_a" lesson="3">2. Окна двери</div><br>
-				<div class="docum_a" lesson="4">3. Добавление этажей</div><br>
-				<div class="docum_a" lesson="5">4. Крыша</div><br>
+				<div class="docum_a" lesson="1">1. Обзор программы</div><br>
+				<div class="docum_a" lesson="2">2. Построение стен</div><br>
+				<div class="docum_a" lesson="3">3. Окна двери</div><br>
+				<div class="docum_a" lesson="4">4. Добавление этажей</div><br>
+				<div class="docum_a" lesson="5">5. Крыша</div><br>
 			</div>
 			
 			<div class="docum_line"></div>
