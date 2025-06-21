@@ -83,7 +83,7 @@ $(document).on('click', '[fon]', function () { $('[fon]').css({"display":"none"}
 <div class="fon" fon=""></div> <? // фон под big img ?>
 
 
-<div class="wrap">
+<div class="wrap" style="font-family: arial, sans-serif; color: #333; font-size: 16px;">
 
 	<div class="content">
 		<div class="line_0"></div>
@@ -102,20 +102,47 @@ $(document).on('click', '[fon]', function () { $('[fon]').css({"display":"none"}
 				
 				<div class="block_right_1">
 					<div class="inb_1">
-						<div class="inb_1_1">
-							<div class="ind_text_1">Программа проектирования дома:</div>
-							<div class="offset_top_30"></div>
-							<div class="ind_text_2">
-								Онлайн программа проектирования загородных домов							 
-							</div>
+						<div style="padding: 20px; max-width: 600px; margin: auto;">
+
+							<h2 style="margin-bottom: 1.2em; font-size: 24px;">
+								Онлайн-планировщик дома 3D
+							</h2>
+
+							<h4 style="margin-top: 1.2em; margin-bottom: 0.5em; font-size: 1em;">
+								🏡 Для кого:
+							</h4>
+							<ul style="padding-left: 20px; list-style-type: disc;">
+								<li style="margin-bottom: 0.4em;">Для тех, кто строит дом или планирует ремонт</li>
+							</ul>
+
+							<h4 style="margin-top: 1.2em; margin-bottom: 0.5em; font-size: 1em;">
+								🔍 Что можно делать:
+							</h4>
+							<ul style="padding-left: 20px; list-style-type: disc;">
+								<li style="margin-bottom: 0.4em;">Рисовать план дома</li>
+								<li style="margin-bottom: 0.4em;">Смотреть проект в 3D в режиме реального времени</li>
+								<li style="margin-bottom: 0.4em;">Выбирать материалы стен, пола, крыши</li>
+								<li style="margin-bottom: 0.4em;">Расставлять окна, двери и мебель</li>
+								<li style="margin-bottom: 0.4em;">Сохранять и дорабатывать проект</li>
+							</ul>
+
+							<h4 style="margin-top: 1.2em; margin-bottom: 0.5em; font-size: 1em;">
+								🛠 Зачем нужно:
+							</h4>
+							<ul style="padding-left: 20px; list-style-type: disc;">
+								<li style="margin-bottom: 0.4em;">Чтобы наглядно представить будущий дом и избежать ошибок на стадии проектирования</li>
+							</ul>
+
 						</div>
+						
+						<a href="construction" style="display: flex; justify-content: center; align-items: center; width: 200px; height: 50px; margin: 0px auto 20px auto; border: solid 1px #b3b3b3; background: #76e199; cursor: pointer; text-decoration: none; box-shadow: 0 0 4px 0 rgba(0,0,0,0.5);">
+							<div style="font-size: 26px; text-align: center; color: #fff;">
+								Начать
+							</div>
+						</a>
+						
 					</div>
 					
-					<a href="construction" style="display: flex; justify-content: center; align-items: center; width: 200px; height: 60px; margin: 50px auto 0px auto; border: solid 1px #b3b3b3; border-radius: 8px; background: #76e199; cursor: pointer; text-decoration: none; box-shadow: 0 0 4px 0 rgba(0,0,0,0.5);">
-						<div style="font-size: 26px; text-align: center; font-family: arial, sans-serif; color: #fff;">
-							Начать
-						</div>
-					</a>
 				</div>
 				
 				<div class="clear"></div>
@@ -127,7 +154,7 @@ $(document).on('click', '[fon]', function () { $('[fon]').css({"display":"none"}
 		<div class="block_line_2">	
 			<div class="block_line_1">
 				<div class="offset_top_30"></div>
-				<div style="text-align: center; font-size: 24px; color:#222;">Проекты:</div>
+				<div style="text-align: center; font-size: 24px;">Проекты:</div>
 				<div class="offset_top_30"></div>
 				
 				<div class="modal_body_content_grid">
@@ -234,22 +261,62 @@ $(document).on('click', '[fon]', function () { $('[fon]').css({"display":"none"}
 		
 		
 		
+
+		<? } ?>		
+
 			<div class="block_line_1">
 				<div class="offset_top_50"></div>
 				<div class="block_float_2">	
-					<div class="ind_text_2">
-					3D калькулятор - это по сути упрощенная программа по проектированию, заточенная под конкретную задачу. Нет ничего лишнего и всё максимально упрощено. Это сделано для того чтобы не тратить часы на обучение работе в программе, а сразу приступить к построению и расчетам.
-					</div>
-					<div class="offset_top_30"></div>
-					<div class="ind_text_1"><div class="padding_left_30">Особенности:</div></div>
+
+<section style="max-width: 800px; margin: auto; padding: 20px;">
+  
+  <h2 style="color: #333; font-size: 24px; margin-bottom: 20px;">
+    🧮 Онлайн-калькулятор блоков
+  </h2>
+
+  <p style="font-size: 16px; color: #555; line-height: 1.6;">
+    Рассчитайте точное количество строительных блоков для вашего проекта с учетом окон, дверей и других проемов.
+    Сервис учитывает не только стандартные блоки, но и обрезки, которые могут быть повторно использованы.
+    Это позволяет значительно снизить количество отходов и сэкономить бюджет.
+  </p>
+
+  <h3 style="color: #333; font-size: 20px; margin-top: 30px; margin-bottom: 15px;">
+    ✅ Что вы получите:
+  </h3>
+  <ul style="list-style: none; padding-left: 20px; color: #555; font-size: 15px; line-height: 1.6;">
+    <li>✔️ Общий объем необходимых блоков</li>
+    <li>✔️ Количество целых блоков</li>
+    <li>✔️ Использование обрезков вместо новых блоков</li>
+    <li>✔️ Объем и количество оставшихся кусков</li>
+    <li>✔️ Наглядные таблицы и диаграммы по каждому типу блока</li>
+  </ul>
+
+  <h3 style="color: #333; font-size: 20px; margin-top: 30px; margin-bottom: 15px;">
+    🧩 Для кого?
+  </h3>
+  <p style="color: #555; font-size: 15px; line-height: 1.6;">
+    Сервис полезен как профессионалам — архитекторам, прорабам, бригадирам, так и частным застройщикам.
+    Подходит для расчета стен в жилых домах, хозпостройках и коммерческих объектах.
+  </p>
+
+  <h3 style="color: #333; font-size: 20px; margin-top: 30px; margin-bottom: 15px;">
+    📊 Простота и эффективность
+  </h3>
+  <p style="color: #555; font-size: 15px; line-height: 1.6;">
+    Загрузите данные из вашей 3D-модели или введите параметры стен, окон и дверей вручную — и получите готовый расчет всего за несколько кликов.
+    Все результаты можно экспортировать в Excel или распечатать.
+  </p>
+
+</section>
+
+
+
+					<a href="calc-blocks" style="display: flex; justify-content: center; align-items: center; width: 200px; height: 50px; margin: 50px auto 0px auto; border: solid 1px #b3b3b3; background: #76e199; cursor: pointer; text-decoration: none; box-shadow: 0 0 4px 0 rgba(0,0,0,0.5);">
+						<div style="font-size: 26px; text-align: center; font-family: arial, sans-serif; color: #fff;">
+							Расчет блоков
+						</div>
+					</a>
 					
-					<div class="ind_list_1">
-						<div class="ind_item_1">2D и 3D визуализация</div>
-						<div class="ind_item_1">Быстрое редактирование</div>
-						<div class="ind_item_1">Удобный и понятный интерфейс</div>
-						<div class="ind_item_1">Сохранение изображений</div>
-						<div class="ind_item_1">Моментальный расчет сметы</div>
-					</div>					
 				</div>
 				
 				<div class="block_right_2">
@@ -275,7 +342,7 @@ $(document).on('click', '[fon]', function () { $('[fon]').css({"display":"none"}
 				<div class="clear"></div>
 				<div class="offset_top_50"></div>
 			</div>
-		<? } ?>				
+		
 		<div class="offset_top_50"></div>
 
 		

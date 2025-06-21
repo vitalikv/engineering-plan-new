@@ -95,7 +95,6 @@ body:before { content: ""; position: fixed; top: -10px; left: 0;  width: 100%; h
 .ind_bl_1
 {
 	background-color: #fff;
-	border-radius: 7px;
 	/*border: 2px dashed #d5d5d5 !important;*/
 	box-shadow: 0 0 6px 0 rgba(0,0,0,0.2);
 
