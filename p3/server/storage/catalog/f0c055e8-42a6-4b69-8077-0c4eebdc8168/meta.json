@@ -1,0 +1,24 @@
+{
+    "uuid": "f0c055e8-42a6-4b69-8077-0c4eebdc8168",
+    "name": "Тумбочка 7",
+    "format": "json",
+    "category": "furniture",
+    "subcategory": "nightstand",
+    "version": "1.0",
+    "boundingBox": {
+        "x": 0.45,
+        "y": 0.55,
+        "z": 0.4
+    },
+    "placement": {
+        "origin": "center-bottom",
+        "wallSnap": true,
+        "faceDirection": "-Z"
+    },
+    "parameters": {
+        "width": 0.45,
+        "depth": 0.4,
+        "height": 0.55,
+        "drawers": 2
+    }
+}

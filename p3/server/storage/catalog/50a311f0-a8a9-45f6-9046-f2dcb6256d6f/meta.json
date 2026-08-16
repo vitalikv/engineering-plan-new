@@ -1,0 +1,24 @@
+{
+    "uuid": "50a311f0-a8a9-45f6-9046-f2dcb6256d6f",
+    "name": "Телевизор",
+    "format": "json",
+    "category": "furniture",
+    "subcategory": "flatTV",
+    "version": "1.0",
+    "boundingBox": {
+        "x": 1.466,
+        "y": 0.836,
+        "z": 0.204
+    },
+    "placement": {
+        "origin": "center-bottom",
+        "wallSnap": true,
+        "faceDirection": "-Z"
+    },
+    "parameters": {
+        "screenWidth": 1.45,
+        "screenHeight": 0.76,
+        "bezelWidth": 0.008,
+        "standHeight": 0.06
+    }
+}

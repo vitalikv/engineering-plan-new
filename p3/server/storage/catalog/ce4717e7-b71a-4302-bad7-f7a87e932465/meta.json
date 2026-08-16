@@ -1,0 +1,24 @@
+{
+    "uuid": "ce4717e7-b71a-4302-bad7-f7a87e932465",
+    "name": "Верхний шкаф",
+    "format": "json",
+    "category": "kitchen",
+    "subcategory": "wall-cabinet",
+    "version": "1.0",
+    "boundingBox": {
+        "x": 0.6,
+        "y": 0.72,
+        "z": 0.349
+    },
+    "placement": {
+        "origin": "center-bottom",
+        "wallSnap": true,
+        "faceDirection": "-Z"
+    },
+    "parameters": {
+        "width": 0.6,
+        "height": 0.72,
+        "doors": 1,
+        "shelves": 1
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "uuid": "9941bf84-7d15-4380-9c6c-7321da7adcf1",
+    "name": "Шкаф с мойкой",
+    "format": "json",
+    "category": "kitchen",
+    "subcategory": "sink-cabinet",
+    "version": "1.0",
+    "boundingBox": {
+        "x": 0.6,
+        "y": 0.92,
+        "z": 0.59
+    },
+    "placement": {
+        "origin": "center-bottom",
+        "wallSnap": true,
+        "faceDirection": "-Z"
+    },
+    "parameters": {
+        "width": 0.6
+    }
+}

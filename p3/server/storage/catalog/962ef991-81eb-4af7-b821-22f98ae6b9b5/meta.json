@@ -1,0 +1,23 @@
+{
+    "uuid": "962ef991-81eb-4af7-b821-22f98ae6b9b5",
+    "name": "Тумбочка 3",
+    "category": "furniture",
+    "subcategory": "nightstand",
+    "version": "1.0",
+    "boundingBox": {
+        "x": 0.45,
+        "y": 0.55,
+        "z": 0.4
+    },
+    "placement": {
+        "origin": "center-bottom",
+        "wallSnap": true,
+        "faceDirection": "-Z"
+    },
+    "parameters": {
+        "width": 0.45,
+        "depth": 0.4,
+        "height": 0.55,
+        "drawers": 2
+    }
+}

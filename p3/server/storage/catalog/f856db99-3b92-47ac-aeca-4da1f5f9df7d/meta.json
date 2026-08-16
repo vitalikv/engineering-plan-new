@@ -1,0 +1,20 @@
+{
+    "uuid": "f856db99-3b92-47ac-aeca-4da1f5f9df7d",
+    "name": "Кровать",
+    "category": "furniture",
+    "subcategory": "bed",
+    "version": "1.0",
+    "boundingBox": {
+        "x": 1.6,
+        "y": 0.95,
+        "z": 2
+    },
+    "placement": {
+        "origin": "center-bottom",
+        "wallSnap": true,
+        "faceDirection": "-Z"
+    },
+    "parameters": {
+        "frameHeight": 0.35
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "uuid": "e2227f6b-ff8f-4b94-92d4-7611334db387",
+    "name": "blue+sofa+3d+model",
+    "format": "json",
+    "category": "import",
+    "subcategory": "glb",
+    "version": "1.0",
+    "boundingBox": {
+        "x": 0.416,
+        "y": 0.368,
+        "z": 1
+    },
+    "placement": {
+        "origin": "center-bottom",
+        "wallSnap": false,
+        "faceDirection": "-Z"
+    },
+    "parameters": []
+}

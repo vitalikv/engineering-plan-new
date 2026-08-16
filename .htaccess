@@ -28,4 +28,7 @@ RewriteRule ^reset_pass_2\/.*$ p1/components/resetPass_2.php
 RewriteRule ^construction$ p1/index.php
 RewriteRule ^calc-blocks$ p2/index.php
 
-
+# --- warm-floor-3 (3D-конструктор v1) ---
+RewriteRule ^construction_v1$ https://%{HTTP_HOST}/construction_v1/ [R=301,L]
+RewriteRule ^construction_v1/$ p3/index.html [L]
+RewriteRule ^construction_v1/(.+)$ p3/$1 [L]

@@ -1,0 +1,19 @@
+{
+    "uuid": "128a32d2-af69-4b63-ba2a-934d543d86a3",
+    "name": "sofa 3d model",
+    "format": "json",
+    "category": "import",
+    "subcategory": "glb",
+    "version": "1.0",
+    "boundingBox": {
+        "x": 0.423,
+        "y": 0.367,
+        "z": 1
+    },
+    "placement": {
+        "origin": "center-bottom",
+        "wallSnap": false,
+        "faceDirection": "-Z"
+    },
+    "parameters": []
+}

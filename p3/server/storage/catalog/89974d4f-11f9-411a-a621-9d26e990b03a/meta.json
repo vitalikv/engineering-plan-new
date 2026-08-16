@@ -1,0 +1,25 @@
+{
+    "uuid": "89974d4f-11f9-411a-a621-9d26e990b03a",
+    "name": "Тумба под телевизор",
+    "format": "json",
+    "category": "bedroom",
+    "subcategory": "tv-stand",
+    "version": "1.0",
+    "boundingBox": {
+        "x": 1.4,
+        "y": 0.4,
+        "z": 0.4
+    },
+    "placement": {
+        "origin": "center-bottom",
+        "wallSnap": true,
+        "faceDirection": "-Z"
+    },
+    "parameters": {
+        "width": 1.4,
+        "depth": 0.4,
+        "height": 0.35,
+        "sections": 2,
+        "legHeight": 0.05
+    }
+}

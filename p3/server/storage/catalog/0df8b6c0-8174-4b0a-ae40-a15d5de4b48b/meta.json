@@ -1,0 +1,26 @@
+{
+    "uuid": "0df8b6c0-8174-4b0a-ae40-a15d5de4b48b",
+    "name": "Диван L",
+    "format": "json",
+    "category": "bedroom",
+    "subcategory": "sofa-l",
+    "version": "1.0",
+    "boundingBox": {
+        "x": 2.41,
+        "y": 0.8,
+        "z": 1.51
+    },
+    "placement": {
+        "origin": "center-bottom",
+        "wallSnap": true,
+        "faceDirection": "-Z"
+    },
+    "parameters": {
+        "width": 2.4,
+        "depth": 0.9,
+        "cornerWidth": 1.5,
+        "seatHeight": 0.35,
+        "backHeight": 0.37,
+        "legHeight": 0.05
+    }
+}

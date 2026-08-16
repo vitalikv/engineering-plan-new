@@ -1,0 +1,23 @@
+{
+    "uuid": "a3c15085-dcbc-4c3d-8968-60e0efc90fa9",
+    "name": "Стул",
+    "category": "furniture",
+    "subcategory": "chair",
+    "version": "1.0",
+    "boundingBox": {
+        "x": 0.45,
+        "y": 0.922,
+        "z": 0.42
+    },
+    "placement": {
+        "origin": "center-bottom",
+        "wallSnap": false,
+        "faceDirection": "-Z"
+    },
+    "parameters": {
+        "seatWidth": 0.45,
+        "seatDepth": 0.42,
+        "seatHeight": 0.46,
+        "backHeight": 0.45
+    }
+}

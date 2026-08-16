@@ -1,0 +1,22 @@
+{
+    "uuid": "b593c9d1-ae8c-4765-a8cf-1ed9fb5f311b",
+    "name": "Шкаф с ящиками",
+    "format": "json",
+    "category": "kitchen",
+    "subcategory": "drawer-cabinet",
+    "version": "1.0",
+    "boundingBox": {
+        "x": 0.6,
+        "y": 0.758,
+        "z": 0.59
+    },
+    "placement": {
+        "origin": "center-bottom",
+        "wallSnap": true,
+        "faceDirection": "-Z"
+    },
+    "parameters": {
+        "width": 0.6,
+        "drawers": 3
+    }
+}
