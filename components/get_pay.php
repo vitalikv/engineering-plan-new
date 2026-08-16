@@ -13,30 +13,22 @@ if(1===1)
 	$secret = 'bfpLkrbKvuwpaNMiuzIX34jN'; // секрет, который мы получили в первом шаге от яндекс.
 	// получение данных.
 	$xdc = array(
-		'notification_type' => $_POST['notification_type'], // p2p-incoming / card-incoming - с кошелька / с карты
-		'operation_id'      => $_POST['operation_id'],      // Идентификатор операции в истории счета получателя.
-		'amount'            => $_POST['amount'],            // Сумма, которая зачислена на счет получателя.
-		'withdraw_amount'   => $_POST['withdraw_amount'],   // Сумма, которая списана со счета отправителя.
-		'currency'          => $_POST['currency'],            // Код валюты — всегда 643 (рубль РФ согласно ISO 4217).
-		'datetime'          => $_POST['datetime'],          // Дата и время совершения перевода.
-		'sender'            => $_POST['sender'],            // Для переводов из кошелька — номер счета отправителя. Для переводов с произвольной карты — параметр содержит пустую строку.
-		'codepro'           => $_POST['codepro'],           // Для переводов из кошелька — перевод защищен кодом протекции. Для переводов с произвольной карты — всегда false.
-		'label'             => $_POST['label'],             // Метка платежа. Если ее нет, параметр содержит пустую строку.
-		'sha1_hash'         => $_POST['sha1_hash']          // SHA-1 hash параметров уведомления.
+		'notification_type' => isset($_POST['notification_type']) ? $_POST['notification_type'] : '', // p2p-incoming / card-incoming - с кошелька / с карты
+		'operation_id'      => isset($_POST['operation_id']) ? $_POST['operation_id'] : '',      // Идентификатор операции в истории счета получателя.
+		'amount'            => isset($_POST['amount']) ? $_POST['amount'] : '',            // Сумма, которая зачислена на счет получателя.
+		'withdraw_amount'   => isset($_POST['withdraw_amount']) ? $_POST['withdraw_amount'] : '',   // Сумма, которая списана со счета отправителя.
+		'currency'          => isset($_POST['currency']) ? $_POST['currency'] : '',            // Код валюты — всегда 643 (рубль РФ согласно ISO 4217).
+		'datetime'          => isset($_POST['datetime']) ? $_POST['datetime'] : '',          // Дата и время совершения перевода.
+		'sender'            => isset($_POST['sender']) ? $_POST['sender'] : '',            // Для переводов из кошелька — номер счета отправителя. Для переводов с произвольной карты — параметр содержит пустую строку.
+		'codepro'           => isset($_POST['codepro']) ? $_POST['codepro'] : '',           // Для переводов из кошелька — перевод защищен кодом протекции. Для переводов с произвольной карты — всегда false.
+		'label'             => isset($_POST['label']) ? $_POST['label'] : '',             // Метка платежа. Если ее нет, параметр содержит пустую строку.
+		'sign'              => isset($_POST['sign']) ? $_POST['sign'] : ''                 // HMAC-SHA256 подпись уведомления.
 	);
 
-	// проверка хеш
-	if (sha1($xdc['notification_type'].'&'.
-			 $xdc['operation_id'].'&'.
-			 $xdc['amount'].'&'.
-			 $xdc['currency'].'&'.
-			 $xdc['datetime'].'&'.
-			 $xdc['sender'].'&'.
-			 $xdc['codepro'].'&'.
-			 $secret.'&'.
-			 $xdc['label']) != $xdc['sha1_hash']) 
-			 {
-		exit; // останавливаем скрипт. у вас тут может быть свой код. exit('Верификация не пройдена. SHA1_HASH не совпадает.');
+	// проверка подписи уведомления
+	if (!checkYooMoneySign($_POST, $secret, $xdc)) 
+	{
+		exit; // останавливаем скрипт, если верификация не пройдена
 	}	
 }
 
@@ -106,6 +98,48 @@ if($update)
 }
 
 echo json_encode( $data );
+
+
+// проверяем подпись уведомления ЮMoney
+function checkYooMoneySign($post, $secret, $xdc)
+{
+	if(empty($post['sign'])) return false;
+	
+	$params = $post;
+	unset($params['sign']);
+	ksort($params, SORT_STRING);
+	
+	$parts = [];
+	foreach($params as $key => $value)
+	{
+		if(is_array($value)) continue;
+		$parts[] = $key.'='.rawurlencode((string)$value);
+	}
+	
+	$sign = hash_hmac('sha256', implode('&', $parts), $secret);
+	
+	return compareHash($sign, $post['sign']);
+}
+
+
+// сравниваем хеши без утечки по времени, с поддержкой старых версий PHP
+function compareHash($hash1, $hash2)
+{
+	if(function_exists('hash_equals'))
+	{
+		return hash_equals($hash1, $hash2);
+	}
+	
+	if(strlen($hash1) !== strlen($hash2)) return false;
+	
+	$res = 0;
+	for($i = 0; $i < strlen($hash1); $i++)
+	{
+		$res |= ord($hash1[$i]) ^ ord($hash2[$i]);
+	}
+	
+	return $res === 0;
+}
 
 
 
