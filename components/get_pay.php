@@ -44,9 +44,26 @@ $amount = $xdc['withdraw_amount'];
 
 // парсим строку на значения
 parse_str($label, $str);
+$user_project = isset($str['project']) ? $str['project'] : '';
+
+
+// программа "теплый пол" (новая, auto_wf) обслуживает свои платежи сама: у нее
+// другая база (skeleton_wf), другая схема и другой расчет дней - сумма там
+// записана в самом заказе, а не выводится из платежа. Поэтому здесь только
+// пересылка: тело уходит как пришло, ответ возвращается ее же.
+//
+// Ветка стоит до разбора остальной метки: токена пользователя в ней нет, и
+// чтение $str['token'] дало бы warning - а он, попав в ответ, не дает выставить
+// код ответа для ЮMoney.
+if($user_project == 'skeleton_wf')
+{
+	sendToSkeletonWf();
+	exit;
+}
+
+
 $paymentId = $str['id'];
 $user_token = $str['token'];
-$user_project = $str['project'];
 
 
 $dbname = 'engineering-plan';
@@ -98,6 +115,76 @@ if($update)
 }
 
 echo json_encode( $data );
+
+
+// пересылаем уведомление программе "теплый пол" (auto_wf) как есть
+//
+// Тело берется сырым (php://input), а не собирается заново из $_POST: подпись
+// считается по всем пришедшим полям, и стоит ЮMoney добавить новое, как
+// пересобранное тело перестанет ей соответствовать.
+//
+// Ответ отдаем тот, что вернула программа: 200 значит "разобрано, повторять
+// нечего", а на все остальное ЮMoney пришлет уведомление еще раз. Не достучались
+// (сеть, программа лежит) - тоже просим повторить, иначе оплата пропадет.
+function sendToSkeletonWf()
+{
+	// адрес выбираем по домену - так же, как пароль базы выше: на боевом это
+	// каталог программы на кириллическом домене, на машине разработчика - домен
+	// skeleton-wf под OpenServer
+	$url = 'http://skeleton-wf/server/api/subscription/yoomoney';
+	if($_SERVER['SERVER_NAME'] == 'engineering-plan.ru')
+	{
+		$url = 'https://xn------6cdcklga3agac0adveeerahel6btn3c.xn--p1ai/auto_wf/server/api/subscription/yoomoney';
+	}
+
+	header('Content-Type: text/plain; charset=utf-8');
+
+	$body = file_get_contents('php://input');
+	if($body === false || $body === '') $body = http_build_query($_POST);
+
+	$code = 0;
+	$answer = '';
+
+	if(function_exists('curl_init'))
+	{
+		$ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+		$answer = curl_exec($ch);
+		$code = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		curl_close($ch);
+	}
+	else
+	{
+		// на случай сборки PHP без curl
+		$context = stream_context_create(array('http' => array(
+			'method'        => 'POST',
+			'header'        => "Content-Type: application/x-www-form-urlencoded\r\n",
+			'content'       => $body,
+			'timeout'       => 20,
+			'ignore_errors' => true,
+		)));
+
+		$answer = file_get_contents($url, false, $context);
+
+		if(isset($http_response_header[0]) && preg_match('~\s(\d{3})\s~', $http_response_header[0], $m))
+		{
+			$code = (int)$m[1];
+		}
+	}
+
+	if($code === 0)
+	{
+		error_log('[get_pay] skeleton_wf unreachable, label: '.(isset($_POST['label']) ? $_POST['label'] : ''));
+		$code = 502;
+	}
+
+	http_response_code($code);
+	echo is_string($answer) ? $answer : '';
+}
 
 
 // проверяем подпись уведомления ЮMoney
