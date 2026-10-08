@@ -129,12 +129,16 @@ echo json_encode( $data );
 function sendToSkeletonWf()
 {
 	// адрес выбираем по домену - так же, как пароль базы выше: на боевом это
-	// каталог программы на кириллическом домене, на машине разработчика - домен
-	// skeleton-wf под OpenServer
+	// собственный домен программы, на машине разработчика - домен skeleton-wf
+	// под OpenServer
+	//
+	// С августа 2026 программа стоит на своем сервере (ingplan.ru), а не в
+	// подпапке auto_wf на кириллическом домене: теперь это две разные машины, и
+	// уведомление уходит наружу по сети, а не внутрь той же файловой системы.
 	$url = 'http://skeleton-wf/server/api/subscription/yoomoney';
 	if($_SERVER['SERVER_NAME'] == 'engineering-plan.ru')
 	{
-		$url = 'https://xn------6cdcklga3agac0adveeerahel6btn3c.xn--p1ai/auto_wf/server/api/subscription/yoomoney';
+		$url = 'https://ingplan.ru/server/api/subscription/yoomoney';
 	}
 
 	header('Content-Type: text/plain; charset=utf-8');
@@ -144,6 +148,7 @@ function sendToSkeletonWf()
 
 	$code = 0;
 	$answer = '';
+	$fail = '';
 
 	if(function_exists('curl_init'))
 	{
@@ -153,8 +158,13 @@ function sendToSkeletonWf()
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+		// соединение отдельно от общего таймаута: машина программы теперь чужая, и
+		// недоступный сервер должен отвалиться за секунды, а не держать все 20 -
+		// ЮMoney ждет ответа ограниченное время и молчание считает сбоем
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 7);
 		$answer = curl_exec($ch);
 		$code = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		$fail = curl_error($ch);
 		curl_close($ch);
 	}
 	else
@@ -178,7 +188,10 @@ function sendToSkeletonWf()
 
 	if($code === 0)
 	{
-		error_log('[get_pay] skeleton_wf unreachable, label: '.(isset($_POST['label']) ? $_POST['label'] : ''));
+		// причину пишем в лог: адрес внешний, и «не достучались» теперь может
+		// означать и просроченный сертификат, и старый список корневых CA на этой
+		// машине - без текста ошибки такое не отличить от лежащего сервера
+		error_log('[get_pay] skeleton_wf unreachable ('.($fail !== '' ? $fail : 'причина неизвестна').'), url: '.$url.', label: '.(isset($_POST['label']) ? $_POST['label'] : ''));
 		$code = 502;
 	}
 
